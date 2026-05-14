@@ -8,6 +8,7 @@ env:
   DOTNET_VERSION: '10.0.x'
   SOLUTION_PATH: 'src/TextDiff.Sharp.sln'
   PROJECT_PATH: 'src/TextDiff.Sharp/TextDiff.Sharp.csproj'
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   release:

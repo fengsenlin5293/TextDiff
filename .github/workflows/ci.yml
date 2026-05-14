@@ -9,6 +9,7 @@ on:
 env:
   DOTNET_VERSION: '10.0.x'
   SOLUTION_PATH: 'src/TextDiff.Sharp.sln'
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   build-and-test:

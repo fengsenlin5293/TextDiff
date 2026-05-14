@@ -3,7 +3,7 @@
     <LangVersion>preview</LangVersion>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>1.3.0</Version>
+
     <Authors>iyulab</Authors>
     <Company>Iyulab Corporation</Company>
     <PackageTags>diff;text-diff;unified-diff;diffx;text-processing;file-diff;version-control;text-comparison;line-diff;csharp;dotnet;unicode;string-processing;code-diff;text-manipulation</PackageTags>
@@ -11,7 +11,7 @@
     <Copyright>Copyright (c) Iyulab Corporation 2024.</Copyright>
     <RepositoryUrl>https://github.com/iyulab/TextDiff</RepositoryUrl>
     <PackageProjectUrl>https://github.com/iyulab/TextDiff</PackageProjectUrl>
-    <PackageIconUrl>https://raw.githubusercontent.com/iyulab/public/main/images/iyulab_128.png</PackageIconUrl>
+
     <Title>Text Diff</Title>
     <Description>A robust C# library for parsing, analyzing, and applying text differences, supporting Unified Diff format.</Description>
     <Tags>diff text-diff unified-diff text-processing file-diff version-control text-comparison line-diff csharp dotnet unicode string-processing code-diff text-manipulation</Tags>
