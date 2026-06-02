@@ -1,0 +1,42 @@
+name: Benchmark
+
+on:
+  workflow_dispatch:
+
+env:
+  SOLUTION_BENCH: 'src/TextDiff.Sharp.Benchmarks/TextDiff.Sharp.Benchmarks.csproj'
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 10.0.x
+
+    - name: Run benchmarks (GitHub markdown exporter)
+      run: dotnet run -c Release --project ${{ env.SOLUTION_BENCH }} -- --filter "*" --exporters github
+
+    - name: Publish results + committed baseline to job summary
+      if: always()
+      run: |
+        {
+          echo "## Benchmark results"
+          echo ""
+          echo "### Committed baseline (benchmarks/baseline.md)"
+          if [ -f benchmarks/baseline.md ]; then
+            cat benchmarks/baseline.md
+          else
+            echo "_No committed baseline yet. Showing current run only._"
+          fi
+          echo ""
+          echo "### Current run"
+          shopt -s nullglob
+          for f in BenchmarkDotNet.Artifacts/results/*-report-github.md; do
+            cat "$f"
+          done
+        } >> "$GITHUB_STEP_SUMMARY"
