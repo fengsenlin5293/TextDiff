@@ -1,3 +1,4 @@
+using System.Text;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
 using TextDiff.Helpers;
@@ -173,5 +174,43 @@ public class MemoryEfficiencyBenchmarks
             buffer.AddLine($"Line {i}");
         }
         return buffer.ToString();
+    }
+}
+
+[SimpleJob(RuntimeMoniker.Net90)]
+[MemoryDiagnoser]
+public class MatchingHotPathBenchmarks
+{
+    private string _document = null!;
+    private string _diff = null!;
+    private TextDiffer _differ = null!;
+
+    [GlobalSetup]
+    public void Setup()
+    {
+        _differ = new TextDiffer();
+
+        // 50,000-line document
+        _document = string.Join("\n",
+            Enumerable.Range(1, 50000).Select(i => $"Line {i} content for matching hot path"));
+
+        // Multi-block diff: targets spread across the document so each block's
+        // FindPosition performs a wide scan (the O(N) matching hot path).
+        var sb = new StringBuilder();
+        foreach (var target in new[] { 1000, 20000, 40000 })
+        {
+            sb.Append("@@ -").Append(target).Append(",3 +").Append(target).Append(",3 @@\n");
+            sb.Append(' ').Append("Line ").Append(target - 1).Append(" content for matching hot path\n");
+            sb.Append('-').Append("Line ").Append(target).Append(" content for matching hot path\n");
+            sb.Append('+').Append("Line ").Append(target).Append(" MODIFIED content for matching hot path\n");
+            sb.Append(' ').Append("Line ").Append(target + 1).Append(" content for matching hot path\n");
+        }
+        _diff = sb.ToString();
+    }
+
+    [Benchmark]
+    public ProcessResult ProcessLargeDocument_MultiBlock_HotPath()
+    {
+        return _differ.Process(_document, _diff);
     }
 }
