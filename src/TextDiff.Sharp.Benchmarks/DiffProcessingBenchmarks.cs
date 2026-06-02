@@ -33,7 +33,7 @@ public class DiffProcessingBenchmarks
         _mediumDocument = string.Join("\n", Enumerable.Range(1, 5000).Select(i => $"Line {i} with some additional content for testing"));
 
         // Large document (10MB)
-        _largeDocument = string.Join("\n", Enumerable.Range(1, 500000).Select(i => $"Line {i} with substantial content for performance testing"));
+        _largeDocument = string.Join("\n", Enumerable.Range(1, 500000).Select(i => $"Line {i} with some additional content for testing"));
 
         // Simple diff
         _simpleDiff = " Line 1 with some content\n- Line 2 with some content\n+ Line 2 MODIFIED with some content\n Line 3 with some content";
