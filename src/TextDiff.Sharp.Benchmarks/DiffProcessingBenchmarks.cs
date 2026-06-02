@@ -8,7 +8,7 @@ using TextDiff.Models;
 
 namespace TextDiff.Benchmarks;
 
-[SimpleJob(RuntimeMoniker.Net90)]
+[SimpleJob(RuntimeMoniker.Net10_0)]
 [MemoryDiagnoser]
 [GcServer(true)]
 public class DiffProcessingBenchmarks
@@ -92,7 +92,7 @@ public class DiffProcessingBenchmarks
     }
 }
 
-[SimpleJob(RuntimeMoniker.Net90)]
+[SimpleJob(RuntimeMoniker.Net10_0)]
 [MemoryDiagnoser]
 public class AsyncProcessingBenchmarks
 {
@@ -130,7 +130,7 @@ public class AsyncProcessingBenchmarks
     }
 }
 
-[SimpleJob(RuntimeMoniker.Net90)]
+[SimpleJob(RuntimeMoniker.Net10_0)]
 [MemoryDiagnoser]
 public class MemoryEfficiencyBenchmarks
 {
@@ -177,7 +177,7 @@ public class MemoryEfficiencyBenchmarks
     }
 }
 
-[SimpleJob(RuntimeMoniker.Net90)]
+[SimpleJob(RuntimeMoniker.Net10_0)]
 [MemoryDiagnoser]
 [GcServer(true)]
 public class MatchingHotPathBenchmarks
