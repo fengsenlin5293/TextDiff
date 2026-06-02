@@ -179,6 +179,7 @@ public class MemoryEfficiencyBenchmarks
 
 [SimpleJob(RuntimeMoniker.Net90)]
 [MemoryDiagnoser]
+[GcServer(true)]
 public class MatchingHotPathBenchmarks
 {
     private string _document = null!;
@@ -199,7 +200,7 @@ public class MatchingHotPathBenchmarks
         var sb = new StringBuilder();
         foreach (var target in new[] { 1000, 20000, 40000 })
         {
-            sb.Append("@@ -").Append(target).Append(",3 +").Append(target).Append(",3 @@\n");
+            sb.Append("@@ -").Append(target - 1).Append(",3 +").Append(target - 1).Append(",3 @@\n");
             sb.Append(' ').Append("Line ").Append(target - 1).Append(" content for matching hot path\n");
             sb.Append('-').Append("Line ").Append(target).Append(" content for matching hot path\n");
             sb.Append('+').Append("Line ").Append(target).Append(" MODIFIED content for matching hot path\n");
