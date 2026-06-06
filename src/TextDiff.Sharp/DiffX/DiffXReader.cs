@@ -24,14 +24,14 @@ public partial class DiffXReader : IDiffXReader
 {
     // Section header pattern: #[dots]name: options
     // Level is determined by number of dots: 0=diffx, 1=.section, 2=..section, 3=...section
-    private static readonly Regex SectionHeaderRegex = SectionHeaderPattern();
+    private static readonly Regex SectionHeaderRegex = new Regex(@"^#(?<level>\.{0,3})(?<name>[a-z]+):\s*(?<options>.*)$", RegexOptions.Compiled);
 
     // Options pattern: key=value pairs
-    private static readonly Regex OptionRegex = OptionPattern();
+    private static readonly Regex OptionRegex = new Regex(@"(?<key>[A-Za-z][A-Za-z0-9_-]*)=(?<value>[^\s,]+)", RegexOptions.Compiled);
 
     // JSON-like metadata for path extraction (simplified parser)
-    private static readonly Regex JsonPathRegex = JsonPathPattern();
-    private static readonly Regex JsonOpRegex = JsonOpPattern();
+    private static readonly Regex JsonPathRegex = new Regex(@"""path""\s*:\s*""(?<value>[^""]+)""", RegexOptions.Compiled);
+    private static readonly Regex JsonOpRegex = new Regex(@"""op""\s*:\s*""(?<value>[^""]+)""", RegexOptions.Compiled);
 
     /// <summary>
     /// Determines whether the content is in DiffX format.
@@ -275,16 +275,4 @@ public partial class DiffXReader : IDiffXReader
         var match = pattern.Match(json);
         return match.Success ? match.Groups["value"].Value : null;
     }
-
-    [GeneratedRegex(@"^#(?<level>\.{0,3})(?<name>[a-z]+):\s*(?<options>.*)$", RegexOptions.Compiled)]
-    private static partial Regex SectionHeaderPattern();
-
-    [GeneratedRegex(@"(?<key>[A-Za-z][A-Za-z0-9_-]*)=(?<value>[^\s,]+)", RegexOptions.Compiled)]
-    private static partial Regex OptionPattern();
-
-    [GeneratedRegex(@"""path""\s*:\s*""(?<value>[^""]+)""", RegexOptions.Compiled)]
-    private static partial Regex JsonPathPattern();
-
-    [GeneratedRegex(@"""op""\s*:\s*""(?<value>[^""]+)""", RegexOptions.Compiled)]
-    private static partial Regex JsonOpPattern();
 }

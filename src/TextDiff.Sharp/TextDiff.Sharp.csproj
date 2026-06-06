@@ -3,18 +3,18 @@
   <PropertyGroup>
     <!-- Build Configuration -->
     <LangVersion>Preview</LangVersion>
-    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net7.0;net8.0;net9.0;net10.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>TextDiff</RootNamespace>
     <AssemblyName>TextDiff.Sharp</AssemblyName>
 
     <!-- Package Information -->
-    <PackageId>TextDiff.Sharp</PackageId>
+    <PackageId>Forest.TextDiff.Sharp</PackageId>
     <Version>1.4.0</Version>
     
     <!-- Package Metadata -->
-    <Title>TextDiff.Sharp</Title>
+    <Title>Forest.TextDiff.Sharp</Title>
     <Authors>TextDiff.Sharp Contributors</Authors>
     <Company>TextDiff.Sharp</Company>
     <Product>TextDiff.Sharp</Product>
@@ -23,8 +23,8 @@
     <PackageDescription>$(Description)</PackageDescription>
 
     <!-- Package URLs and Links -->
-    <PackageProjectUrl>https://github.com/iyulab/TextDiff.Sharp</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/iyulab/TextDiff.Sharp</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/fengsenlin5293/TextDiff</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/fengsenlin5293/TextDiff</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>

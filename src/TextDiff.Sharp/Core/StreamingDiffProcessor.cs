@@ -127,7 +127,7 @@ public class StreamingDiffProcessor
         var diffLines = new List<string>();
 
         string? line;
-        while ((line = await reader.ReadLineAsync(cancellationToken)) != null)
+        while ((line = await reader.ReadLineAsync()) != null)
         {
             diffLines.Add(line);
         }
@@ -149,7 +149,7 @@ public class StreamingDiffProcessor
         long processedLines = 0;
 
         // Pre-read document to apply diff blocks (required for context matching)
-        while ((line = await documentReader.ReadLineAsync(cancellationToken)) != null)
+        while ((line = await documentReader.ReadLineAsync()) != null)
         {
             documentLines.Add(line);
             totalLines++;

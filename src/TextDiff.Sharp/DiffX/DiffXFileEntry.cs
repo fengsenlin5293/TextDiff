@@ -48,7 +48,7 @@ public record DiffXFileEntry
     /// This content can be directly passed to <see cref="TextDiffer.Process"/>
     /// for application to the target document.
     /// </remarks>
-    public required string DiffContent { get; init; }
+    public string DiffContent { get; init; } = string.Empty;
 
     /// <summary>
     /// Gets the encoding specified for this diff section.
